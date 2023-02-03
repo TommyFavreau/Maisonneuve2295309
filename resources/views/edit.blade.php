@@ -12,7 +12,7 @@
 
                 <div class="form-items border-thick-rounded">
 
-                    <form  method="post">
+                    <form method="post">
                         @csrf
                         @method('put')
 
@@ -55,9 +55,12 @@
                             <label class="col-form-label col-sm-2 mt-2" for="ville_id"> Ville </label>
                             <div class="col-sm-10">
                                 <select class="form-select" name="ville_id" id="ville_id" required>
-                                    <option value="{{ $etudiant->etudiantHasVille->id }}">{{ $etudiant->etudiantHasVille->name }}</option>
                                     @foreach($villes as $ville)
-                                    <option value="{{ $ville->id }}">{{ $ville->name }}</option>
+                                        @if($etudiant->ville_id == $ville->id)
+                                            <option value="{{ $ville->id }}" selected>{{ $ville->name }}</option>
+                                        @else
+                                            <option value="{{ $ville->id }}">{{ $ville->name }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
